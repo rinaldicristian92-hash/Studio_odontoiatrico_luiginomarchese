@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Studio Dentistico Dott. Luigino Marchese a Foggia. Specializzato in odontoiatria, protesi dentaria e gnatologia. Prenota la tua visita.">
+    <title>Studio Dentistico Dott. Luigino Marchese | Foggia</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* =========================================
+           VARIABILI E RESET
+           ========================================= */
+        :root {
+            --primary-color: #4da3ff;      /* Azzurro richiesto */
+            --primary-dark: #2c7ac9;       /* Azzurro scuro per hover */
+            --bg-color: #f9f9f7;           /* Panna/Bianco sporco */
+            --text-color: #333333;         /* Grigio scuro per testi */
+            --light-text: #666666;         /* Grigio medio */
+            --white: #ffffff;
+            --accent: #eef6ff;             /* Azzurro chiarissimo per sfondi alternati */
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #222;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            font-family: 'Montserrat', sans-serif;
+            transition: var(--transition);
+            border: 2px solid var(--primary-color);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .text-center { text-align: center; }
+        
+        .section-title {
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* =========================================
+           HEADER & NAV
+           ========================================= */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+            padding: 20px 0;
+            background-color: transparent;
+        }
+
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i { font-size: 1.8rem; }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        #hero {
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.8)), url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: #222;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--light-text);
+            margin-bottom: 30px;
+        }
+
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: rgba(77, 163, 255, 0.1);
+            color: var(--primary-dark);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* =========================================
+           CHI SIAMO
+           ========================================= */
+        #chi-siamo {
+            background-color: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img {
+            position: relative;
+        }
+
+        .about-img img {
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            /* Placeholder immagine dottore */
+            width: 100%; 
+            object-fit: cover;
+            height: 400px; 
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--light-text);
+        }
+
+        /* =========================================
+           SERVIZI & GNATOLOGIA
+           ========================================= */
+        #servizi {
+            background-color: var(--accent);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(77, 163, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        .service-card h4 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: var(--light-text);
+        }
+
+        /* =========================================
+           PROBLEMI & SINTOMI (Dal post caricato)
+           ========================================= */
+        #sintomi {
+            background-color: var(--white);
+        }
+
+        .sintomi-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .sintomi-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .sintomi-list {
+            margin-top: 20px;
+        }
+
+        .sintomi-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            background: var(--bg-color);
+            padding: 15px;
+            border-radius: 8px;
+            transition: var(--transition);
+        }
+
+        .sintomi-list li:hover {
+            background: var(--accent);
+            transform: translateX(10px);
+        }
+
+        .sintomi-list i {
+            color: #ff6b6b; /* Rosso soft per "dolore/sintomo" */
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* =========================================
+           INFO E ORARI
+           ========================================= */
+        #info {
+            background-color: #333;
+            color: var(--white);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .info-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 5px;
+        }
+
+        .contact-details p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* =========================================
+           CONTATTI & FOOTER
+           ========================================= */
+        #contatti {
+            background-color: var(--bg-color);
+        }
+
+        .form-container {
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            transition: var(--transition);
+            background-color: #fcfcfc;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background-color: var(--white);
+        }
+
+        footer {
+            background-color: #222;
+            color: #888;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* =========================================
+           ANIMAZIONI & MEDIA QUERIES
+           ========================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Tablet & Mobile */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            
+            .hamburger { display: block; color: var(--text-color); }
+            
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                right: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 40px 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: var(--transition);
+                z-index: 999;
+            }
+
+            .nav-links.nav-active {
+                transform: translateY(0);
+            }
+
+            .about-grid, .sintomi-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fa-solid fa-tooth"></i>
+                    MARCHESE LUIGINO
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#chi-siamo">Chi Sono</a></li>
+                    <li><a href="#servizi">Servizi</a></li>
+                    <li><a href="#sintomi">Gnatologia</a></li>
+                    <li><a href="#info">Orari</a></li>
+                    <li><a href="#contatti" class="btn" style="padding: 8px 20px; margin-top: -5px;">Prenota Visita</a></li>
+                </ul>
+                <div class="hamburger">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container hero-content">
+            <div class="hero-badges">
+                <span class="badge">Odontoiatria</span>
+                <span class="badge">Protesi Dentaria</span>
+            </div>
+            <h1>Ci prendiamo cura del tuo sorriso a Foggia.</h1>
+            <p>Dr. Luigino Marchese: professionista specializzato in soluzioni dentali mirate, protesi e gnatologia individuale.</p>
+            <a href="tel:+390881727202" class="btn"><i class="fa-solid fa-phone"></i> Chiama 0881 727202</a>
+        </div>
+    </section>
+
+    <section id="chi-siamo" class="section-padding">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-img reveal">
+                    <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Dr. Luigino Marchese Studio">
+                </div>
+                <div class="about-text reveal">
+                    <div class="section-title">
+                        <h2>Il Dottore</h2>
+                    </div>
+                    <h3>Specialista in Odontoiatria e Protesi Dentaria</h3>
+                    <p>Sono <strong>Luigino Marchese</strong>. La mia esperienza mi permette di individuare il tuo problema e proporti soluzioni mirate e personalizzate. Nel mio studio a Foggia troverai un ambiente accogliente e altamente professionale.</p>
+                    <p>Effettuo consulenze personalizzate su <strong>base gnatologica individuale</strong> (funzione individuale in base al sesso e l'età) e trattamenti specifici anche per persone con disabilità.</p>
+                    <div style="margin-top: 30px;">
+                        <div style="display: flex; gap: 20px;">
+                            <div>
+                                <h2 style="color: var(--primary-color); margin-bottom: 5px;">30+</h2>
+                                <p style="font-size: 0.9rem;">Anni di Esperienza</p>
+                            </div>
+                            <div>
+                                <h2 style="color: var(--primary-color); margin-bottom: 5px;">100%</h2>
+                                <p style="font-size: 0.9rem;">Dedizione al Paziente</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servizi" class="section-padding">
+        <div class="container">
+            <div class="text-center reveal">
+                <div class="section-title">
+                    <h2>I Nostri Servizi</h2>
+                </div>
+                <p style="max-width: 600px; margin: 0 auto; color: var(--light-text);">Offriamo una gamma completa di trattamenti per la salute e l'estetica della tua bocca, utilizzando tecnologie moderne.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fa-solid fa-teeth"></i></div>
+                    <h4>Protesi Dentaria</h4>
+                    <p>Soluzioni fisse e mobili per ripristinare la funzionalità masticatoria e l'estetica del sorriso.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fa-solid fa-user-doctor"></i></div>
+                    <h4>Gnatologia</h4>
+                    <p>Studio della funzione mandibolare per risolvere dolori posturali e malocclusioni.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h4>Igiene & Prevenzione</h4>
+                    <p>Pulizia professionale e check-up periodici per mantenere denti e gengive sani.</p>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-icon"><i class="fa-solid fa-wheelchair"></i></div>
+                    <h4>Disabilità</h4>
+                    <p>Trattamenti personalizzati e accessibili dedicati a pazienti con disabilità.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sintomi" class="section-padding">
+        <div class="container">
+            <div class="sintomi-container">
+                <div class="sintomi-text reveal">
+                    <div class="section-title">
+                        <h2>I tuoi denti influenzano la tua salute</h2>
+                    </div>
+                    <p class="reveal" style="margin-bottom: 20px;">
+                        Molto spesso, infatti, sono problemi dentali o malocclusioni a causare patologie che interessano altre parti del corpo. Attraverso una corretta diagnosi gnatologica, possiamo risolvere:
+                    </p>
+                    <ul class="sintomi-list reveal">
+                        <li><i class="fa-solid fa-head-side-virus"></i> Cefalee (Mal di testa frequenti)</li>
+                        <li><i class="fa-solid fa-bone"></i> Cervicalgie (Dolore al collo)</li>
+                        <li><i class="fa-solid fa-person-walking-with-cane"></i> Lombalgie (Mal di schiena)</li>
+                        <li><i class="fa-solid fa-arrows-spin"></i> Vertigini</li>
+                        <li><i class="fa-solid fa-face-tired"></i> Senso di malessere diffuso</li>
+                    </ul>
+                </div>
+                <div class="sintomi-img reveal" style="flex:1; display:flex; align-items:center; justify-content:center;">
+                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" style="border-radius: var(--radius); box-shadow: var(--shadow);" alt="Benessere e salute">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="info" class="section-padding">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-box reveal">
+                    <h4><i class="fa-solid fa-clock"></i> Orari di Apertura</h4>
+                    <ul class="hours-list">
+                        <li><span>Lunedì - Venerdì</span> <span>08:30 - 13:00</span></li>
+                        <li><span></span> <span>16:00 - 20:00</span></li>
+                        <li><span>Sabato - Domenica</span> <span>Chiuso</span></li>
+                    </ul>
+                </div>
+                <div class="info-box reveal contact-details">
+                    <h4><i class="fa-solid fa-location-dot"></i> Dove Siamo</h4>
+                    <p><strong>Studio Dentistico Marchese</strong></p>
+                    <p><i class="fa-solid fa-map-pin"></i> Via Napoli 6/D, Foggia</p>
+                    <p><i class="fa-solid fa-phone"></i> 0881 727202</p>
+                    <p><i class="fa-solid fa-envelope"></i> Scrivici per informazioni</p>
+                </div>
+                <div class="info-box reveal">
+                    <h4><i class="fa-solid fa-map"></i> Mappa</h4>
+                    <div style="background: #ddd; width: 100%; height: 150px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #555;">
+                        <i class="fa-solid fa-map-location-dot" style="font-size: 2rem;"></i>
+                    </div>
+                    <a href="https://maps.google.com/?q=Via+Napoli+6/D,+Foggia" target="_blank" style="display:inline-block; margin-top:10px; color: var(--primary-color); font-size: 0.9rem;">Apri su Google Maps &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti" class="section-padding">
+        <div class="container">
+            <div class="text-center section-title reveal">
+                <h2>Prenota una Visita</h2>
+            </div>
+            <div class="form-container reveal">
+                <form onsubmit="event.preventDefault(); alert('Grazie! Il messaggio è stato inviato (Demo).');">
+                    <div class="form-group">
+                        <label for="name">Nome e Cognome</label>
+                        <input type="text" id="name" placeholder="Il tuo nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefono</label>
+                        <input type="tel" id="phone" placeholder="Il tuo numero" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reason">Motivo della visita</label>
+                        <select id="reason">
+                            <option value="controllo">Controllo Generale</option>
+                            <option value="dolore">Dolore / Urgenza</option>
+                            <option value="protesi">Protesi Dentaria</option>
+                            <option value="gnatologia">Problemi Posturali/Gnatologia</option>
+                            <option value="altro">Altro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Messaggio (Opzionale)</label>
+                        <textarea id="message" rows="4" placeholder="Descrivi brevemente il tuo problema..."></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Invia Richiesta</button>
+                    <p style="font-size: 0.8rem; color: #888; margin-top: 15px; text-align: center;">I tuoi dati saranno trattati nel rispetto della privacy.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Dott. Luigino Marchese - Odontoiatra | Via Napoli 6/D, Foggia | P.IVA 00000000000</p>
+            <p style="font-size: 0.8rem; margin-top: 10px;">Developed for Demo Purpose</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Navbar Scrolled Effect
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // 2. Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const links = document.querySelectorAll('.nav-links li');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+            
+            // Hamburger animation transition (icon change)
+            if(navLinks.classList.contains('nav-active')){
+                hamburger.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            } else {
+                hamburger.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            }
+        });
+
+        // Close menu when clicking a link
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('nav-active');
+                hamburger.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            });
+        });
+
+        // 3. Scroll Animations (Intersection Observer)
+        const observerOptions = {
+            threshold: 0.15 // Trigger when 15% of element is visible
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Run only once
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
